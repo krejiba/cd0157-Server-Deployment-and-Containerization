@@ -38,3 +38,10 @@ def test_auth(client):
     assert response.status_code == 200
     token = response.json['token']
     assert token is not None
+
+
+def test_break_pipeline(client):
+    response = client.get('/')
+    assert response.status_code == 200
+    assert response.json == 'Healthy'
+    assert False, 'We are intentionally creating a test fail'
